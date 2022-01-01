@@ -15,13 +15,25 @@ const Content = (props) => {
   return (
     <div>
     {props.parts.map(parts =>
-      <p>{parts.name} {parts.exercises}</p>
+      <p key={parts.id}>{parts.name} {parts.exercises}</p>
     )}
     
     </div>
   )
 }
 
+const Sum = (props) => {
+  console.log("sum props", props)
+  const total = props.parts.reduce((sum, parts) => {
+    console.log("what is happening", sum)
+    return sum + parts.exercises
+  }, 0)
+
+
+  return (
+    <div>total of {total} exercises</div>
+  )
+}
 
 const Course = (props) => {
   console.log("course props", props)
@@ -29,6 +41,7 @@ const Course = (props) => {
     <div>
       <Header name={props.course.name} /> 
       <Content parts={props.course.parts} /> 
+      <Sum parts={props.course.parts} />
     </div>
   )
 }
