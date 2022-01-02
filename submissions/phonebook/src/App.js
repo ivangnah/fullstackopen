@@ -6,12 +6,48 @@ const App = () => {
   ])
   const [newName, setNewName] = useState('')
 
+  const addName = (event) => {
+    event.preventDefault()
+    console.log('add button clicked', event.target)
+
+    //checking for existing user
+    const existingPerson = persons.find(
+      (person) => person.name.toLowerCase() === newName.toLowerCase()
+    )
+    //console.log("existing", existingPerson)
+
+    //alert and stop if existing
+    if (existingPerson) {
+      alert(`${newName} is already added to phonebook`)
+      setNewName("")
+      return
+    }
+
+    const nameObject = {
+      name: newName
+    }
+
+    //adding new person to the list
+    setPersons(persons.concat(nameObject))
+    setNewName('')
+    console.log('persons list', persons)
+  }
+
+  const handleNameChange = (event) => {
+    console.log(event.target.value)
+    setNewName(event.target.value)
+  }
+
   return (
     <div>
       <h2>Phonebook</h2>
-      <form>
+      <form onSubmit={addName} >
         <div>
-          name: <input />
+          name: 
+            <input 
+              value={newName} 
+              onChange={handleNameChange}
+              />
         </div>
         <div>
           <button type="submit">add</button>
