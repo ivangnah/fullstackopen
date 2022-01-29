@@ -21,14 +21,18 @@ const App = () => {
   
   const [newName, setNewName] = useState('')
   const [newNumber, setNewNumber] = useState('')
-  const [showAll, setShowAll ] = useState(true)
+  const [showAll, setShowAll ] = useState(false)
   const [searchTerm, setSearchTerm ] = useState('')
 
   
-  //search works now for perfect match. next thing to do is partial match
+  //partial match search
   const personsToShow = showAll
     ? persons
-    : persons.filter(person => person.name === searchTerm )
+    : persons.filter(person =>
+    //person.name === searchTerm )
+      person.name.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1
+    
+    )
   
   
   const addName = (event) => {
@@ -50,7 +54,8 @@ const App = () => {
 
     const nameObject = {
       name: newName ,
-      number: newNumber
+      number: newNumber ,
+      id: persons.length + 1,
     }
 
     //adding new person to the list
