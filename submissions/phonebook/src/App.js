@@ -1,5 +1,16 @@
 import React, { useState } from 'react'
 
+const Person  = (props) => {
+  console.log("person  props", props)
+  return(
+    <div>
+      <p>{props.person.name}</p>
+    </div>
+    
+    )
+}
+
+
 const App = () => {
   const [persons, setPersons] = useState([
     { name: 'Arto Hellas' }
@@ -54,7 +65,11 @@ const App = () => {
         </div>
       </form>
       <h2>Numbers</h2>
-      ...
+        <div>
+          {persons.map(persons => 
+            <Person key={persons.id} person={persons} />
+          )}
+      </div>
       <div>debug: {newName}</div>
     </div>
 
