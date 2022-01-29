@@ -4,7 +4,7 @@ const Person  = (props) => {
   console.log("person  props", props)
   return(
     <div>
-      <p>{props.person.name}</p>
+      <p>{props.person.name} {props.person.number}</p>
     </div>
     
     )
@@ -13,9 +13,10 @@ const Person  = (props) => {
 
 const App = () => {
   const [persons, setPersons] = useState([
-    { name: 'Arto Hellas' }
+    { name: 'Arto Hellas', number:'999' }
   ])
   const [newName, setNewName] = useState('')
+  const [newNumber, setNewNumber] = useState('')
 
   const addName = (event) => {
     event.preventDefault()
@@ -35,7 +36,8 @@ const App = () => {
     }
 
     const nameObject = {
-      name: newName
+      name: newName ,
+      number: newNumber
     }
 
     //adding new person to the list
@@ -49,6 +51,11 @@ const App = () => {
     setNewName(event.target.value)
   }
 
+  const handleNumberChange = (event) => {
+    console.log(event.target.value)
+    setNewNumber(event.target.value)
+  }
+
   return (
     <div>
       <h2>Phonebook</h2>
@@ -58,6 +65,13 @@ const App = () => {
             <input 
               value={newName} 
               onChange={handleNameChange}
+              />
+       </div>
+       <div>
+        number: 
+            <input 
+              value={newNumber} 
+              onChange={handleNumberChange}
               />
         </div>
         <div>
