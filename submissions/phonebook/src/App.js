@@ -1,5 +1,8 @@
 import React, { useState } from 'react'
 
+
+
+
 const Person  = (props) => {
   console.log("person  props", props)
   return(
@@ -9,6 +12,21 @@ const Person  = (props) => {
     
     )
 }
+
+
+const Filter = ( {searchTerm, onChange} ) => {
+  return(
+      <div>
+      <p>Filter shown with
+      <input
+        value={searchTerm}
+        onChange = {onChange}
+        /></p>
+      </div>
+    )
+}
+
+
 
 
 const App = () => {
@@ -23,7 +41,6 @@ const App = () => {
   const [newNumber, setNewNumber] = useState('')
   const [showAll, setShowAll ] = useState(false)
   const [searchTerm, setSearchTerm ] = useState('')
-
   
   //partial match search
   const personsToShow = showAll
@@ -93,14 +110,12 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
-      Filter shown with 
-      <input
-        value={searchTerm}
-        onChange = {handleSearchTermChange}
-        />
+        <Filter value={searchTerm} onChange = {handleSearchTermChange} />
+      
+      <h3> Add a new Name</h3> 
       <form onSubmit={addName} >
         <div>
-          <h2> Add a new Name</h2> 
+          
           Name: 
             <input 
               value={newName} 
@@ -127,7 +142,6 @@ const App = () => {
             <Person key={persons.id} person={persons} />
           )}
       </div>
-      <div>debug: {newName}</div>
     </div>
 
   )
