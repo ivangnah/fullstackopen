@@ -1,57 +1,7 @@
 import React, { useState } from 'react'
-
-
-
-
-const Person  = (props) => {
-  console.log("person  props", props)
-  return(
-    <div>
-      <p>{props.person.name} {props.person.number}</p>
-    </div>
-    
-    )
-}
-
-
-const Filter = ( {searchTerm, onChange} ) => {
-  return(
-      <div>
-      <p>Filter shown with
-      <input
-        value={searchTerm}
-        onChange = {onChange}
-        /></p>
-      </div>
-    )
-}
-
-const PersonForm = ( {addName, newName, newNumber, handleNameChange, handleNumberChange} ) => {
-  return (
-      <form onSubmit={addName} >
-            <div>
-              Name: 
-                <input 
-                  value={newName} 
-                  onChange={handleNameChange}
-                  />
-           </div>
-           <div>
-              Phone Number: 
-                  <input 
-                    value={newNumber} 
-                    onChange={handleNumberChange}
-                    />
-              </div>
-            <div>
-              <button type="submit">Add</button>
-            </div>
-          </form>
-    )
-  
-}
-
-
+import Person from './components/Person'
+import Filter from './components/Filter'
+import PersonForm from './components/PersonForm'
 
 const App = () => {
   const [persons, setPersons] = useState([
