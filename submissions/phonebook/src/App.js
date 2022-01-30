@@ -26,6 +26,30 @@ const Filter = ( {searchTerm, onChange} ) => {
     )
 }
 
+const PersonForm = ( {addName, newName, newNumber, handleNameChange, handleNumberChange} ) => {
+  return (
+      <form onSubmit={addName} >
+            <div>
+              Name: 
+                <input 
+                  value={newName} 
+                  onChange={handleNameChange}
+                  />
+           </div>
+           <div>
+              Phone Number: 
+                  <input 
+                    value={newNumber} 
+                    onChange={handleNumberChange}
+                    />
+              </div>
+            <div>
+              <button type="submit">Add</button>
+            </div>
+          </form>
+    )
+  
+}
 
 
 
@@ -113,26 +137,8 @@ const App = () => {
         <Filter value={searchTerm} onChange = {handleSearchTermChange} />
       
       <h3> Add a new Name</h3> 
-      <form onSubmit={addName} >
-        <div>
-          
-          Name: 
-            <input 
-              value={newName} 
-              onChange={handleNameChange}
-              />
-       </div>
-       <div>
-          Phone Number: 
-              <input 
-                value={newNumber} 
-                onChange={handleNumberChange}
-                />
-          </div>
-        <div>
-          <button type="submit">Add</button>
-        </div>
-      </form>
+       <PersonForm addName={addName} newName={newName} handleNameChange={handleNameChange} newNumber={newNumber} handleNumberChange={handleNumberChange} />
+      
       <h2>Numbers</h2>
       <form onSubmit = {setShowAll}>
         <button type="submit">Show All</button>
